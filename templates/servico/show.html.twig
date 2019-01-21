@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Servico{% endblock %}
+
+{% block body %}
+<div class="espaco">
+    <h1>Serviço</h1>
+
+    <table class="ui celled table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ servico.id }}</td>
+            </tr>
+            <tr>
+                <th>Nome</th>
+                <td>{{ servico.nome }}</td>
+            </tr>
+            <tr>
+                <th>Status</th>
+                <td>{% if servico.status==1 %}Ativo{% else %}Inativo{% endif %}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('servico_index') }}"><button type="button" class="ui button secondary"><i class="fa fa-arrow-circle-left"></i> Voltar</button></a>
+            
+    <a href="{{ path('servico_edit', {'id': servico.id}) }}"><button type="button" class="ui brown button"><i class="edit icon"></i> Editar</button></a>
+            
+    {{ include('servico/_delete_form.html.twig') }}
+</div>
+{% endblock %}

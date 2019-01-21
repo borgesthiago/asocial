@@ -1,0 +1,155 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Painel {% endblock %}
+
+{% block body %}
+
+<div class="ui grid">
+    <div class="espaco">
+        <div class="four wide column">
+            <div class="ui card">
+                <div class="content">
+                    <i class="right floated users blue icon"></i>
+                    <div class="header">Funcionários</div>
+                    <div class="description">
+                        <p></p>
+                    </div>
+                </div>
+                <div class="extra content">
+                    Total
+                    <span class="right floated star">
+                        <h2>{{ totalFuncionario }}</h2>            
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+     <div class="espaco">
+        <div class="four wide column">
+            <div class="ui card">
+                <div class="content">
+                    <i class="right floated user green icon"></i>
+                    <div class="header">Usuários</div>
+                    <div class="description">
+                        <p></p>
+                    </div>
+                </div>
+                <div class="extra content">
+                    Total
+                    <span class="right floated star">
+                        <h2>
+                        {{ totalUsuario }}
+                        </h2>            
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="espaco">
+        <div class="four wide column">
+            <div class="ui card">
+                <div class="content">
+                    <i class="right floated building brown icon"></i>
+                    <div class="header">Equipamentos</div>
+                    <div class="description">
+                        <p></p>
+                    </div>
+                </div>
+                <div class="extra content">
+                    Total
+                    <span class="right floated star">
+                        <h2>
+                        {{ totalEquipamento }}
+                            </h2>            
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>    
+    <div class="espaco">
+        <div class="four wide column">
+            <div class="ui card">
+                <div class="content">
+                    <i class="right floated cogs icon"></i>
+                    <div class="header">Serviços</div>
+                    <div class="description">
+                        <p></p>
+                    </div>
+                </div>
+                <div class="extra content">
+                    Total
+                    <span class="right floated star">
+                        <h2>
+                        {{ totalServico }}
+                        </h2>            
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>    
+    <div class="espaco">
+        <div class="four wide column">
+            <div class="ui card">
+                <div class="content">
+                    <i class="right floated address card o icon"></i>
+                    <div class="header">Atendmentos</div>
+                    <div class="description">
+                        <p>Mensal</p>
+                    </div>
+                </div>
+                <div class="extra content">
+                    Total
+                    <span class="right floated star">
+                        <h2>{{ totalAtendMes }}
+                        </h2>            
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>    
+    <div class="espaco">
+        <div class="four wide column">
+            <div class="ui card">
+                <div class="content">
+                    <i class="right floated address card o icon"></i>
+                    <div class="header">Atendimentos</div>
+                    <div class="description">
+                        Geral
+                    </div>
+                </div>
+                <div class="extra content">
+                    Total
+                       <span class="right floated star">
+                        <h2>
+                     {{ totalAtendimento }}
+                        </h2>            
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+       <div class="espaco">
+        <div class="four wide column">
+            <div class="ui card">
+                <div class="content">
+                    <i class="right floated file text o grey  icon"></i>
+                    <div class="header">Documentos</div>
+                    <div class="description">
+                        <h3>
+                     {{ totalDoc }}
+                     </h3>
+                    </div>
+                </div>
+                <div class="extra content">
+                    Reiterações
+                       <span class="right floated star">
+                        <h2>
+                        {{ totalDocReiterado }}
+                        </h2>            
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>    
+</div>
+{% endblock %}

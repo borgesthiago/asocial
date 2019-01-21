@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Editar Benefícios{% endblock %}
+
+{% block body %}
+<div class="espaco">
+    <h1>Editar Benefícios</h1>
+
+    {{ include('beneficios/_form.html.twig', {'button_label': 'Atualizar'}) }}
+
+    <a href="{{ path('beneficios_index') }}"><button type="button" class="ui button secondary"><i class="fa fa-arrow-circle-left"></i> Voltar</button></a>
+
+    {{ include('beneficios/_delete_form.html.twig') }}
+</div>
+{% endblock %}

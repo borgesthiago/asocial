@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Atendimento{% endblock %}
+
+{% block body %}
+<div class="espaco">
+    <h1>Atendimento</h1>
+<div class="ui four column grid">
+    <div class="row">
+        <div class="two wide column">
+           Nº do Atendimento: <b>{{ atendimento.id }}</b>
+        </div>
+        <div class="two wide column">
+           Usuário: <b>{{ atendimento.usuario }}</b>
+        </div>
+        <div class="four wide column">
+            Data: <b>{{ atendimento.data ? atendimento.data|date('d/m/Y') : '' }}</b>
+        </div>
+    </div>
+    <div class="row">
+    <div class="six wide column"> 
+        <p><b>Necessidades de Atendimento</b></p>
+        {% for atendimentos in atendimento.tipo %}
+            <p><i class="check icon"></i>{{ atendimentos }}</p>
+        {% else %}
+            Nenhuma informação cadastrada!
+        {% endfor %}
+    </div>
+    <div class="nine wide column">
+        <textarea id="editor1" name="editor1">{{ atendimento.relato }}</textarea>
+    </div>
+</div>
+    <a href="{{ path('atendimento_index') }}"><button type="button" class="ui button secondary"><i class="fa fa-arrow-circle-left"></i> Voltar</button></a>
+            
+    <a href="{{ path('atendimento_edit', {'id': atendimento.id}) }}"><button type="button" class="ui brown button"><i class="edit icon"></i> Editar</button></a>
+            
+    {{ include('atendimento/_delete_form.html.twig') }}
+</div>
+{% endblock %}
+{% block javascripts %}
+ <script type="text/javascript">
+      window.onload = function()  {
+        CKEDITOR.replace( 'editor1' );
+      };
+    </script>
+{% endblock %}

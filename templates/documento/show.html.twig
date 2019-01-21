@@ -1,0 +1,60 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Documento{% endblock %}
+
+{% block body %}
+<div class="espaco">
+    <h1>Documento</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ documento.id }}</td>
+            </tr>
+            <tr>
+                <th>Numero</th>
+                <td>{{ documento.numero }}</td>
+            </tr>
+            <tr>
+                <th>Tipo</th>
+                <td>{{ documento.tipo }}</td>
+            </tr>
+            <tr>
+                <th>DataEmitido</th>
+                <td>{{ documento.dataEmitido ? documento.dataEmitido|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>DataRecebido</th>
+                <td>{{ documento.dataRecebido ? documento.dataRecebido|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Reiteracao</th>
+                <td>{{ documento.reiteracao ? 'Yes' : 'No' }}</td>
+            </tr>
+            <tr>
+                <th>NumeroReiteracao</th>
+                <td>{{ documento.documentoReiterado }}</td>
+            </tr>
+            <tr>
+                <th>Prazo para Resposta</th>
+                <td>{{ documento.prazoResposta }}</td>
+            </tr>
+            <tr>
+                <th>Nº Doc. Resposta</th>
+                <td>{{ documento.documentoResposta }}</td>
+            </tr>
+            <tr>
+                <th>Data Resposta</th>
+                <td>{{ documento.dataResposta ? documento.dataResposta|date('d/m/Y') : '' }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('documento_index') }}">back to list</a>
+
+    <a href="{{ path('documento_edit', {'id': documento.id}) }}">edit</a>
+
+    {{ include('documento/_delete_form.html.twig') }}
+</div>
+{% endblock %}

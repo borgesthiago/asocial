@@ -1,0 +1,60 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Saúde{% endblock %}
+
+{% block body %}
+<div class="espaco">
+    <h3>Listagem de Saúde</h3>  
+    <div class="direita">
+        <a href="{{ path('saude_new') }}"><button type="button" class="ui primary button"><i class="fa fa-plus-circle" aria-hidden="true"></i> Novo</button></a>
+    </div>
+    <table class="ui celled table">
+        <thead>
+            <tr class="ui center aligned">
+                <th>Id</th>
+                <th>Usuário</th>
+                <th>Medicamento</th>
+                <th>Período do Medicamento</th>
+                <th>Possui Doença</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for saude in saudes %}
+            <tr>
+                <td>{{ saude.id }}</td>
+                <td>{{ saude.usuario }}</td>
+                <td>{{ saude.medicamento }}</td>
+                <td>{{ saude.periodo }} dias</td>
+                <td>
+                    <div class="ui accordion">
+                        <div class="title">
+                            <i class="dropdown icon"></i>
+                            {% if saude.doenca ==1 %}Sim{% else %}Não{% endif %}
+                        </div>
+                        <div class="content">
+                            <p><b>Nome da Doença:</b> {{ saude.nomeDoenca }}</p>
+                            <p><b>Início do Tratamento:</b> {{ saude.dataInicio ? saude.dataInicio|date('d/m/Y') : '' }}</p>
+                            <p><b>Dosagem:</b> {{ saude.dosagem }}</p>
+                            <p><b>Validade do Medicamento:</b> {{ saude.validade ? saude.validade|date('d/m/Y') : '' }}</p>
+                        </div>
+                    </div>
+                </td>
+                <td>
+                    <div class="ui small basic icon buttons">
+                    <a href="{{ path('saude_show', {'id': saude.id}) }}"><button class="ui button"><i class="file green icon"></i></button></a>
+                    <a href="{{ path('saude_edit', {'id': saude.id}) }}"><button class="ui button"><i class="edit blue icon"></i></button></a>
+                    {% if is_granted('ROLE_ADMIN') %}
+                    <a href="{{ path('saude_delete', {'id': saude.id}) }}"><button class="ui button"><i class="trash red icon"></i></button></a>
+                    {% endif %}
+                </div>                   
+                </td>
+            </tr>
+        {% else %}
+                <td colspan="6">nenhum registro encontrado</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

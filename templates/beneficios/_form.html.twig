@@ -1,0 +1,21 @@
+{% form_theme form 'form/form_div.html.twig' %}
+<div class="ui grid">
+    <div class="column">
+        {{ form_start(form, {'attr': {'class': 'ui form'}}) }}
+        <div class="fields">
+            {{ form_row(form.transfereRenda, {'attr': {'data-row-class': 'two wide'}}) }}
+            {{ form_row(form.programa, {'attr': {'data-row-class': 'five wide'}}) }}
+            {{ form_row(form.bpc, {'attr': {'data-row-class': 'two wide'}}) }}
+        </div>
+        <div class="fields">
+            {{ form_row(form.tipoBpc, {'attr': {'data-row-class': 'four wide'}}) }}
+            {{ form_row(form.usuario, {'attr': {'data-row-class': 'five wide'}}) }}
+        </div>
+        <div class="fields">
+            <div class="ui right floated buttons">
+                <button class="ui primary button"><i class="save icon"></i>{{ button_label|default('Salvar') }}</button>
+            </div>
+        </div>
+    </div>
+</div>
+{{ form_end(form) }}

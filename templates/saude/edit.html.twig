@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Editar Saude{% endblock %}
+
+{% block body %}
+<div class="espaco">
+    <h1>Editar Saúde</h1>
+
+    {{ include('saude/_form.html.twig', {'button_label': 'Atualizar'}) }}
+
+    <a href="{{ path('saude_index') }}"><button type="button" class="ui button secondary"><i class="fa fa-arrow-circle-left"></i> Voltar</button></a>
+
+    {{ include('saude/_delete_form.html.twig') }}
+</div>
+{% endblock %}

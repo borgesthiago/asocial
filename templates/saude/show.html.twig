@@ -1,0 +1,67 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Saude{% endblock %}
+
+{% block body %}
+<div class="espaco">
+    <h1>Saude</h1>
+
+    <table class="ui celled table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ saude.id }}</td>
+            </tr>
+            <tr>
+                <th>Medicamento</th>
+                <td>{{ saude.medicamento }}</td>
+            </tr>
+            <tr>
+                <th>Inicio do tratamento</th>
+                <td>{{ saude.dataInicio ? saude.dataInicio|date('d/m/Y') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Período</th>
+                <td>{{ saude.periodo }}</td>
+            </tr>
+            <tr>
+                <th>Dosagem</th>
+                <td>{{ saude.dosagem }}</td>
+            </tr>
+            <tr>
+                <th>Validade</th>
+                <td>{{ saude.validade ? saude.validade|date('d/m/Y') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Doença</th>
+                <td>{% if saude.doenca ==1 %}Sim{% else %}Não{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Nome da Doença</th>
+                <td>{{ saude.nomeDoenca }}</td>
+            </tr>
+            <tr>
+                <th>Tratamento</th>
+                <td>{% if saude.tratamento ==1 %}Sim{% else %}Não{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Anotação</th>
+                <td><textarea id="editor1" name="editor1">{{ saude.anotacao }}</textarea></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('saude_index') }}"><button type="button" class="ui button secondary"><i class="fa fa-arrow-circle-left"></i> Voltar</button></a>
+            
+    <a href="{{ path('saude_edit', {'id': saude.id}) }}"><button type="button" class="ui brown button"><i class="edit icon"></i> Editar</button></a>
+            
+    {{ include('saude/_delete_form.html.twig') }}
+</div>
+{% endblock %}
+{% block javascripts %}
+ <script type="text/javascript">
+      window.onload = function()  {
+        CKEDITOR.replace( 'editor1' );
+      };
+    </script>
+{% endblock %}

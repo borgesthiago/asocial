@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Editar Serviço{% endblock %}
+
+{% block body %}
+<div class="espaco">
+    <h1>Editar Serviço</h1>
+
+    {{ include('servico/_form.html.twig', {'button_label': 'Atualizar'}) }}
+
+    <a href="{{ path('servico_index') }}"><button type="button" class="ui button secondary"><i class="fa fa-arrow-circle-left"></i> Voltar</button></a>
+
+    {{ include('servico/_delete_form.html.twig') }}
+</div>
+{% endblock %}

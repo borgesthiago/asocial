@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Beneficios{% endblock %}
+
+{% block body %}
+<div class="espaco">
+    <h1>Benefício</h1>
+
+    <table class="ui celled table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ beneficio.id }}</td>
+            </tr>
+            <tr>
+                <th>Usuário</th>
+                <td>{{ beneficio.usuario.nome }}</td>
+            </tr>
+            <tr>
+                <th>TransfereRenda</th>
+                <td>{% if beneficio.transfereRenda ==1 %}Sim{% else %}Não{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Programa</th>
+                <td>{{ beneficio.programa }}</td>
+            </tr>
+            <tr>
+                <th>Bpc</th>
+                <td>{% if beneficio.bpc ==1 %}Sim{% else %}Não{% endif %}</td>
+            </tr>
+            <tr>
+                <th>TipoBpc</th>
+                <td>{{ beneficio.tipoBpc }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('beneficios_index') }}"><button type="button" class="ui button secondary"><i class="fa fa-arrow-circle-left"></i> Voltar</button></a>
+
+    <a href="{{ path('beneficios_edit', {'id': beneficio.id}) }}"><button type="button" class="ui brown button"><i class="edit icon"></i> Editar</button></a>
+            
+    {{ include('beneficios/_delete_form.html.twig') }}
+</div>
+{% endblock %}

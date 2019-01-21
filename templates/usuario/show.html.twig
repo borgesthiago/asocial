@@ -1,0 +1,156 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Usuario{% endblock %}
+
+{% block body %}
+ <div class="espaco">  
+    <h1>Usuário</h1>
+
+    <table class="ui celled table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ usuario.id }}</td>
+            </tr>
+            <tr>
+                <th>Nome</th>
+                <td>{{ usuario.nome }}</td>
+            </tr>
+            <tr>
+                <th>Cpf</th>
+                <td>{{ usuario.cpf }}</td>
+            </tr>
+            <tr>
+                <th>Rg</th>
+                <td>{{ usuario.rg }}</td>
+            </tr>
+            <tr>
+                <th>OrgaoRg</th>
+                <td>{{ usuario.orgaoRg }}</td>
+            </tr>
+            <tr>
+                <th>DataNascimento</th>
+                <td>{{ usuario.dataNascimento ? usuario.dataNascimento|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Email</th>
+                <td>{{ usuario.email }}</td>
+            </tr>
+            <tr>
+                <th>Sexo</th>
+                <td>{{ usuario.sexo=='M' ? 'Masculino' : 'Feminino' }}</td>
+            </tr>
+            <tr>
+                <th>Pcd</th>
+                <td>{{ usuario.pcd==1 ? 'Sim' : 'Não'}}</td>
+            </tr>
+            <tr>
+                <th>Naturalidade</th>
+                <td>{{ usuario.naturalidade }}</td>
+            </tr>
+            <tr>
+                <th>Profissao</th>
+                <td>{{ usuario.profissao }}</td>
+            </tr>
+            <tr>
+                <th>Ocupacao</th>
+                <td>{{ usuario.ocupacao }}</td>
+            </tr>
+            <tr>
+                <th>Renda</th>
+                <td>{{ usuario.renda }}</td>
+            </tr>
+            <tr>
+                <th>Ctps</th>
+                <td>{{ usuario.ctps }}</td>
+            </tr>
+            <tr>
+                <th>SerieCtps</th>
+                <td>{{ usuario.serieCtps }}</td>
+            </tr>
+            <tr>
+                <th>Escolaridade</th>
+                <td>{{ usuario.escolaridade }}</td>
+            </tr>
+            <tr>
+                <th>Nis</th>
+                <td>{{ usuario.nis }}</td>
+            </tr>
+        </tbody>
+    </table>
+        {% for familium in usuario.familia %}            
+                {{ familium.nome }}
+                {{ familium.dataNascimento ? familium.dataNascimento|date('Y-m-d') : '' }}
+                {{ familium.grauParentesco }}
+                {{ familium.profissao }}
+                {{ familium.ocupacao }}
+                {{ familium.renda }}
+                {{ familium.escolaridade }}
+                {{ familium.fatorRisco }}
+        {% else %}
+            Nenhuma pessoa possui vínculo a este usuário.
+        {% endfor %}
+<br>
+        {% for beneficio in usuario.beneficio %}
+            <tr>
+                <td>{{ beneficio.id }}</td>
+                <td>{{ beneficio.transfereRenda }}</td>
+                <td>{{ beneficio.programa }}</td>
+                <td>{{ beneficio.bpc }}</td>
+                <td>{{ beneficio.tipoBpc }}</td>
+                <td>{{ beneficio.usuario }}</td>
+               
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6">no records found</td>
+            </tr>
+        {% endfor %}
+<br>
+        {% for saude in usuario.saude %}
+            <tr>
+                <td>{{ saude.medicamento }}</td>
+                <td>{{ saude.dataInicio ? saude.dataInicio|date('Y-m-d') : '' }}</td>
+                <td>{{ saude.periodo }}</td>
+                <td>{{ saude.dosagem }}</td>
+                <td>{{ saude.validade ? saude.validade|date('Y-m-d') : '' }}</td>
+                <td>{{ saude.doenca }}</td>
+                <td>{{ saude.nomeDoenca }}</td>
+                <td>{{ saude.tratamento }}</td>
+                <td>{{ saude.anotacao }}</td>
+                <td>
+                    <a href="{{ path('saude_show', {'id': saude.id}) }}">show</a>
+                    <a href="{{ path('saude_edit', {'id': saude.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="11">no records found</td>
+            </tr>
+        {% endfor %}
+<br>
+        {% for documento in usuario.documentos %}
+            <tr>
+                <td>{{ documento.id }}</td>
+                <td>{{ documento.numero }}</td>
+                <td>{{ documento.tipo }}</td>
+                <td>{{ documento.dataEmitido ? documento.dataEmitido|date('Y-m-d') : '' }}</td>
+                <td>{{ documento.dataRecebido ? documento.dataRecebido|date('Y-m-d') : '' }}</td>
+                <td>{{ documento.reiteracao ? 'Yes' : 'No' }}</td>
+                <td>{{ documento.numeroReiteracao }}</td>
+                <td>
+                    <a href="{{ path('documento_show', {'id': documento.id}) }}">show</a>
+                    <a href="{{ path('documento_edit', {'id': documento.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="8">no records found</td>
+            </tr>
+        {% endfor %}
+    <a href="{{ path('usuario_index') }}">back to list</a>
+
+    <a href="{{ path('usuario_edit', {'id': usuario.id}) }}">edit</a>
+
+    {{ include('usuario/_delete_form.html.twig') }}
+{% endblock %}

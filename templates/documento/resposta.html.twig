@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Resposta{% endblock %}
+
+{% block body %}
+<div class="espaco">
+    <div class="ui grid">
+        <div class="row">
+            <div class="twelve wide column">
+                <h3>Adicionar Resposta</h3>
+                <a href="{{ path('documento_index') }}">
+                    <button type="button" class="ui secondary button">
+                        <i class="arrow circle left icon"></i> Voltar
+                    </button>
+                </a><p></p>
+                {{ include('documento/_resposta.html.twig', {'button_label': 'Atualizar'}) }}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,30 @@
+{% form_theme form 'form/form_div.html.twig' %}
+<div class="ui grid">
+    <div class="column">
+        {{ form_start(form, {'attr': {'class': 'ui form'}}) }}
+        <div class="fields">
+            {{ form_row(form.medicamento, {'attr': {'data-row-class': 'six wide'}}) }}
+            {{ form_row(form.dataInicio, {'attr': {'data-row-class': 'three wide'}}) }}
+            {{ form_row(form.periodo, {'attr': {'data-row-class': 'three wide'}}) }}
+        </div>
+        <div class="fields">
+            {{ form_row(form.dosagem, {'attr': {'data-row-class': 'six wide'}}) }}
+            {{ form_row(form.validade, {'attr': {'data-row-class': 'three wide'}}) }}
+            {{ form_row(form.doenca, {'attr': {'data-row-class': 'three wide'}}) }}
+        </div>
+        <div class="fields">
+            {{ form_row(form.tratamento, {'attr': {'data-row-class': 'three wide'}}) }}
+            {{ form_row(form.nomeDoenca, {'attr': {'data-row-class': 'four wide'}}) }}
+            {{ form_row(form.usuario, {'attr': {'data-row-class': 'five wide'}}) }}
+        </div>
+        <div class="fields">
+            {{ form_row(form.anotacao, {'attr': {'data-row-class': 'twelve wide'}}) }}
+        </div>
+        <div class="fields">
+            <div class="ui right floated buttons">
+                <button class="ui primary button"><i class="save icon"></i>{{ button_label|default('Salvar') }}</button>
+            </div>
+        </div>
+    </div>
+</div>
+{{ form_end(form) }}

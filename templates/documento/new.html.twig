@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Novo Documento{% endblock %}
+
+{% block body %}
+<div class="espaco">
+ <div class="ui grid">
+        <div class="row">
+            <div class="eight wide column">
+                <h3>Adicionar Documento</h3>
+                <a href="{{ path('documento_index') }}"><button type="button" class="ui button secondary"><i class="fa fa-arrow-circle-left"></i> Voltar</button></a>
+            </div>
+            <div class="eight wide column">
+
+            </div>
+        </div>
+    </div>
+    {{ include('documento/_form.html.twig') }}
+        
+</div>
+{% endblock %}

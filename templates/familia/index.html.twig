@@ -1,0 +1,49 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Familia index{% endblock %}
+
+{% block body %}
+<div class="espaco">
+    <h3>Listagem de Familiar</h3>  
+    <div class="direita">
+        <a href="{{ path('familia_new') }}"><button type="button" class="ui primary button"><i class="fa fa-plus-circle" aria-hidden="true"></i> Novo</button></a>
+    </div>
+    <table class="ui celled table">
+        <thead>
+            <tr class="ui center aligned">
+                <th>Id</th>
+                <th>Usuário</th>
+                <th>Nome</th>
+                <th>Data Nascimento</th>
+                <th>Grau Parentesco</th>
+                <th>Fator Risco</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for familium in familias %}
+            <tr>
+                <td>{{ familium.id }}</td>
+                <td>{{ familium.usuario.nome }}</td>
+                <td>{{ familium.nome }}</td>
+                <td>{{ familium.dataNascimento ? familium.dataNascimento|date('d/m/Y') : '' }}</td>
+                <td>{{ familium.grauParentesco }}</td>
+                <td>{{ familium.fatorRisco }}</td>
+                <td>
+                    <div class="ui small basic icon buttons">
+                    <a href="{{ path('familia_show', {'id': familium.id}) }}"><button class="ui button"><i class="file green icon"></i></button></a>
+                    <a href="{{ path('familia_edit', {'id': familium.id}) }}"><button class="ui button"><i class="edit blue icon"></i></button></a>
+                    {% if is_granted('ROLE_ADMIN') %}
+                    <a href="{{ path('familia_delete', {'id': familium.id}) }}"><button class="ui button"><i class="trash red icon"></i></button></a>
+                    {% endif %}
+                </div>                   
+                </td>
+            </tr>
+        {% else %}
+                <td colspan="6">nenhum registro encontrado</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

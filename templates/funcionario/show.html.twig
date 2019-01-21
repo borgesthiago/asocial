@@ -1,0 +1,79 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Funcionário{% endblock %}
+
+{% block body %}
+<div class="espaco">
+    <h1>Funcionário</h1>
+<div class="ui cards">
+    <div class="ui card">
+        <div class="content">
+            <div class="header">{{ funcionario.nome }}</div>
+            <div class="meta">Matrícula {{ funcionario.matricula }}</div>
+            <div class="description">
+            <p>CPF: {{ funcionario.cpf }}</p>
+            <p>RG: {{ funcionario.rg }}</p>
+            <p>Órgão Expedidor: {{ funcionario.OrgaoRg }}</p>
+            <p>Admissão: {{ funcionario.dataAdmissao ? funcionario.dataAdmissao|date('Y-m-d') : '' }}</p>
+            <p>Exoneração: {{ funcionario.dataExoneracao ? funcionario.dataExoneracao|date('Y-m-d') : '' }}</p>
+            <p>Cargo: {{ funcionario.cargo }}</p>
+            <p>Função: {{ funcionario.funcao }}</p>
+            <p>Coordenador: {% if funcionario.cargo == 1 %} Sim {% else %} Não {% endif %}
+            </div>
+        </div>
+        <div class="extra content">
+        {% if funcionario.status == '1' %}
+            <i class="check green icon"></i>
+            {% else %}
+            <i class="ban red icon"></i>
+            {% endif %}
+            {{ funcionario.vinculo }}
+        </div>
+    </div>
+    <div class="ui card">
+        <div class="content">
+            <div class="header">Endereço</div>
+            <div class="meta">{{ funcionario.habitacao.endereco }}</div>
+            <div class="description">
+            <p>Bairro: <b>{{ funcionario.habitacao.bairro }}</b></p>
+            <p>Cidade: <b>{{ funcionario.habitacao.cidade }}</b></p>
+            <br>
+            <p>Telefone: <b>{{ funcionario.contato.telefone }}</b></p>
+            <p>Celular: <b>{{ funcionario.contato.celular }}</b></p>
+           </div>
+        </div>
+    </div>
+    <div class="ui card">
+        <div class="content">
+            <div class="header">Lotação</div>
+            <div class="meta">{{ funcionario.secretaria.nome }}</div>
+            <div class="description">
+            <p>Endereço: <b>{{ funcionario.secretaria.endereco }}</b></p>
+            <p>Bairro: <b>{{ funcionario.secretaria.bairro }}</b></p>
+            <p>E-mail: <b>{{ funcionario.secretaria.email }}</b></p>
+            <br>
+            <p>Telefone: <b>{{ funcionario.secretaria.telefone }}</b></p>
+           </div>
+        </div>
+    </div>
+    <div class="ui card">
+        <div class="content">
+            <div class="header">Remuneração</div>
+            <div class="meta">Salário: {{ funcionario.remuneracao.salario|number_format(2, ',','.') }}</div>
+            <div class="description">
+            <p>Gratificação: <b>{{ funcionario.remuneracao.gratificacao|number_format(2, ',','.') }}</b></p>
+            <p>Desconto: <b>{{ funcionario.remuneracao.desconto|number_format(2, ',','.') }}</b></p>
+           </div>
+        </div>
+    </div>
+    </div>
+    <div class="ui grid">
+        <div class="sixteen wide column"></div>
+            <a href="{{ path('funcionario_index') }}"><button type="button" class="ui button secondary"><i class="fa fa-arrow-circle-left"></i> Voltar</button></a>
+            <a href="{{ path('funcionario_edit', {'id': funcionario.id}) }}"><button type="button" class="ui brown button"><i class="edit icon"></i> Editar</button></a>
+            {{ include('funcionario/_delete_form.html.twig') }}
+        </div>
+    </div>
+
+</div>
+{% endblock %}
